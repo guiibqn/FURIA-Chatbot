@@ -69,8 +69,7 @@ Abra: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 ├── templates/
 │   └── chat.html         # Interface do chat (frontend)
 ├── static/
-│   ├── style.css         # Estilos visuais personalizados
-│   ├── script.js         # Lógica do chat no navegador
+│   ├── style-furia.css         # Estilos visuais personalizados
 │   └── images/           # Logos, avatars, background
 ```
 
