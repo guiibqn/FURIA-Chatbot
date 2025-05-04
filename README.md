@@ -23,7 +23,7 @@ O objetivo é criar um chatbot temático voltado aos fãs da FURIA, com informa�
 
 ## 📸 Captura de Tela
 
-![screenshot](static/screenshot-furia.png)
+![screenshot](static/Screenshot-furia.png)
 
 ---
 
