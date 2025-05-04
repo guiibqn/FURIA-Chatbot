@@ -23,7 +23,7 @@ O objetivo é criar um chatbot temático voltado aos fãs da FURIA, com informa�
 
 ## 📸 Captura de Tela
 
-![screenshot](static/images/screenshot-furia.png)
+![screenshot](static/screenshot-furia.png)
 
 ---
 
@@ -36,27 +36,19 @@ git clone https://github.com/seu-usuario/chatbot-furia.git
 cd chatbot-furia
 ```
 
-### 2. Crie e ative um ambiente virtual (opcional, mas recomendado)
-
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
-```
-
-### 3. Instale as dependências
+### 2. Instale as dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Se não houver `requirements.txt`, instale manualmente:
+Se não houver no `requirements.txt`, instale manualmente:
 
 ```bash
 pip install flask feedparser
 ```
 
-### 4. Execute o servidor Flask
+### 3. Execute o servidor Flask
 
 ```bash
 python app.py
