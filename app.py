@@ -20,4 +20,4 @@ def chat():
     return jsonify({"answer": resposta})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
