@@ -2,7 +2,7 @@
 
 Este é um projeto de interface conversacional desenvolvido para o processo seletivo de Estágio/Assistente em Engenharia de Software da **FURIA Tech**.
 
-O objetivo é criar um chatbot temático voltado aos fãs da FURIA, com informações úteis sobre o time, em uma interface personalizada com identidade visual gamer.
+O objetivo é criar um chatbot temático voltado aos fãs da FURIA, com informações úteis sobre o time de CS em uma interface personalizada com identidade visual gamer.
 
 ---
 
@@ -23,7 +23,7 @@ O objetivo é criar um chatbot temático voltado aos fãs da FURIA, com informa�
 
 ## 📸 Captura de Tela
 
-![screenshot](static/screenshot-furia.png)
+![screenshot](static/Screenshot-furia.png)
 
 ---
 
@@ -69,8 +69,7 @@ Abra: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 ├── templates/
 │   └── chat.html         # Interface do chat (frontend)
 ├── static/
-│   ├── style.css         # Estilos visuais personalizados
-│   ├── script.js         # Lógica do chat no navegador
+│   ├── style-furia.css         # Estilos visuais personalizados
 │   └── images/           # Logos, avatars, background
 ```
 
