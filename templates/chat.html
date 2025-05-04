@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatBot FURIA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='furia-style.css') }}">
+</head>
+<body>
+    <div class="furia-header">
+        <img src="{{ url_for('static', filename='Furia_Esports_logo.png') }}" alt="Logo FURIA">
+    </div>
+
+    <div id="welcome-screen" class="welcome-screen">
+        <h1 class="welcome-text">Bem-vindo, FURIOSO(A)!</h1>
+    </div>
+
+    <div class="chat-container">
+        <div class="header">
+            <span>Bem-vindo, FURIOSO(A)! ⚡</span><br>
+            <span>Pronto pra dominar o mapa com a FURIA?</span>
+        </div>
+
+        <div class="messages" id="chat-box">
+
+        </div>
+
+        <div class="bottom-section">
+            <div class="quick-buttons">
+                <button class="quick-btn" data-intent="Time">🐾 Time</button>
+                <button class="quick-btn" data-intent="Próximo Jogo">📅 Próximo Jogo</button>
+                <button class="quick-btn" data-intent="Resultados">🏆 Resultados</button>
+                <button class="quick-btn" data-intent="Ranking">📊 Ranking</button>
+                <button class="quick-btn" data-intent="Últimas Notícias">📰 Últimas Notícias</button>
+                <button class="quick-btn" data-intent="Torcida">🎉</button>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Digite sua mensagem..." onkeydown="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function sendMessage(optionalMessage = null) {
+    const userInput = document.getElementById('user-input');
+    const message = optionalMessage || userInput.value.trim();
+    if (!message) return;
+
+    appendMessage('Você', message, 'user-message');
+    userInput.value = '';
+    userInput.disabled = true;
+
+    // Adiciona a mensagem de "digitando..."
+    appendMessage('FURIA Bot', '<em>Digitando...</em>', 'bot-message typing');
+
+    fetch('/get', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ msg: message }),
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao obter resposta do servidor.');
+        return response.json();
+    })
+    .then(data => {
+        // Simula o delay de digitação (ex: 1 segundo)
+        setTimeout(() => {
+            // Remove todas as mensagens com classe 'typing'
+            const typingElements = document.querySelectorAll('.typing');
+            typingElements.forEach(el => el.remove());
+
+            if (data && data.answer) {
+                appendMessage('FURIA Bot', data.answer, 'bot-message');
+            } else {
+                appendMessage('FURIA Bot', 'Desculpe, não entendi a resposta.', 'bot-message');
+            }
+        }, 1000); // 1000 ms = 1 segundo de delay
+    })
+    .catch(error => {
+        console.error(error);
+        const typingElements = document.querySelectorAll('.typing');
+        typingElements.forEach(el => el.remove());
+        appendMessage('FURIA Bot', 'Erro de conexão com o servidor.', 'bot-message');
+    })
+    .finally(() => {
+        userInput.disabled = false;
+        userInput.focus();
+    });
+}
+
+
+    function appendMessage(sender, text, className) {
+        const chatBox = document.getElementById('chat-box');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${className}`;
+
+        const avatarSrc = className.includes('user-message')
+            ? "{{ url_for('static', filename='user-avatar.png') }}" // coloque o nome da imagem do usuário
+            : "{{ url_for('static', filename='furia-bot-avatar.png') }}"; // imagem do bot
+
+        messageDiv.innerHTML = `
+            <img src="${avatarSrc}" alt="avatar" class="avatar">
+            <div class="message-content">
+                <strong>${sender}:</strong><br>
+                ${text}
+            </div>
+        `;
+
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+    const welcomeMessage = `
+        🔥 Fala aí, FURIOSO(A)!<br>
+        Eu sou o bot oficial da FURIA e tô aqui pra te deixar por dentro de tudo do nosso CS!<br>
+        
+        Pode me perguntar sobre:
+
+        <ul>
+            <li>👥 Time</li>
+            <li>🎮 Próximo jogo</li>
+            <li>🏆 Resultados</li>
+            <li>📊 Ranking</li>
+        </ul>
+
+        <p>E muito mais! 👊💥<br>
+    `;
+
+    // Adiciona mensagem "digitando..."
+    appendMessage('FURIA Bot', '<em>Digitando...</em>', 'bot-message typing');
+
+    // Simula tempo de digitação e mostra mensagem real
+    setTimeout(() => {
+            const typingElements = document.querySelectorAll('.typing');
+            typingElements.forEach(el => el.remove());
+
+            appendMessage('FURIA Bot', welcomeMessage, 'bot-message');
+        }, 4000); // 2 segundos de delay
+
+        // Adiciona eventos aos botões rápidos
+        document.querySelectorAll("[data-intent]").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const intent = btn.getAttribute("data-intent");
+                sendMessage(intent);
+            });
+        });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+    // Remove a tela de boas-vindas após a animação
+    setTimeout(() => {
+        const welcomeScreen = document.getElementById('welcome-screen');
+        welcomeScreen.style.display = 'none';
+    }, 3000); // tempo total da animação + margem
+});
+    </script>
+</body>
+</html>
