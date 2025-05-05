@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from responses import detectar_intent, gerar_resposta  # ✅ Importação das funções e dados
+from responses import detectar_intent, gerar_resposta 
 
 from datetime import datetime  
 
