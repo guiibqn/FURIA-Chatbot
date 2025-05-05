@@ -1,8 +1,9 @@
 # 🐺 FURIA Chatbot – Desafio Técnico FURIA Tech
 
-Este é um projeto de interface conversacional desenvolvido para o processo seletivo de Estágio/Assistente em Engenharia de Software da **FURIA Tech**.
+🎯 O objetivo foi criar uma **interface conversacional temática voltada aos fãs da FURIA**, oferecendo informações úteis sobre o time de CS em um ambiente interativo com visual gamer.
 
-O objetivo é criar um chatbot temático voltado aos fãs da FURIA, com informações úteis sobre o time de CS em uma interface personalizada com identidade visual gamer.
+🔗 Acesse a versão online: [https://furia-chatbot-7jwo.onrender.com](https://furia-chatbot-7jwo.onrender.com)
+
 
 ---
 
